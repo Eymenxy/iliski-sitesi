@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XXXX 💗 XXXX'nin Anıları</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="img/icon.png">
+</head>
+<body>
+  <canvas id="stars-bg"></canvas>
+  <audio id="bg-music" src="lalala.m4a" autoplay loop hidden></audio>
+  <div class="container">
+    <h1 class="neon-title">XXXX 💗 XXXX</h1>
+    <div class="subtitle">UpUzun Devamlılıklar <span class="big-heart">🫶</span></div>
+    <div class="counter-box">
+      <h2>İlişki Süremiz</h2>
+      <div id="counter" class="neon-counter"></div>
+    </div>
+    <div class="gallery-box">
+      <h2>En Güzel Anılarımız</h2>
+      <div class="gallery" id="gallery"></div>
+      <button class="circle-add-btn" id="add-photo-btn"><span class="plus-icon">+</span></button>
+      <div class="add-photo-msg" id="add-photo-msg" style="display:none;">Fotoğraf Yüklemek Mi İstiyorsun ?</div>
+      <button class="random-memory-btn neon-btn" id="random-memory-btn"><img src="img/repost.png" alt="Rastgele Anı" class="random-memory-icon"></button>
+    </div>
+    <button class="neon-btn" id="kavga-btn">Kavga Mı Ettiniz ⁉️</button>
+    <button class="neon-btn" id="activity-btn">Birlikte Ne Yapalım?</button>
+  </div>
+  <div id="add-photo-popup" class="add-photo-popup" style="display:none;">
+    <div class="add-photo-popup-box">
+      <button class="popup-close" id="close-add-photo-popup" title="Kapat">&times;</button>
+      <div class="add-photo-popup-msg">Fotoğraf Yüklemek Mi İstiyorsun ?</div>
+      <div class="add-photo-popup-actions">
+        <button class="popup-evet">Evet</button>
+        <button class="popup-hayir">Hayır</button>
+      </div>
+    </div>
+  </div>
+  <div id="upload-popup" class="upload-popup" style="display:none;">
+    <div class="upload-popup-box">
+      <button class="popup-close" id="close-upload-popup" title="Kapat">&times;</button>
+      <div class="upload-area" id="upload-area">
+        <div class="upload-icon">&#9729;&#8593;</div>
+        <div class="upload-text">Dosyaları buraya sürükleyin</div>
+        <div class="upload-or">veya</div>
+        <label class="upload-btn">
+          Gözat
+          <input type="file" id="file-input" accept="image/*" multiple style="display:none;">
+        </label>
+        <div class="selected-file" id="selected-file" style="display:none;"></div>
+        <button class="neon-btn" id="continue-upload-btn" style="margin-top:18px;display:none;">Devam Et</button>
+      </div>
+    </div>
+  </div>
+  <div id="admin-popup" class="admin-popup" style="display:none;">
+    <div class="admin-popup-box">
+      <button class="popup-close" id="close-admin-popup" title="Kapat">&times;</button>
+      <div class="admin-popup-msg">Sadece Yönetici Dosya Yüklemesi Yapabilir 👨‍💻❗</div>
+      <label class="admin-label">Şifre Giriniz:</label>
+      <div class="admin-password-box">
+        <input type="password" id="admin-password" class="admin-password-input" placeholder="Şifre" autocomplete="off">
+        <span class="show-hide" id="show-hide-password">👁️</span>
+      </div>
+      <button class="neon-btn" id="admin-login-btn" style="margin-top:16px;">Giriş Yap</button>
+    </div>
+  </div>
+  <div id="error-popup" class="error-popup" style="display:none;">
+    <div class="error-popup-box">
+      <div class="error-popup-msg">Şifre hatalı!</div>
+      <button class="neon-btn" id="close-error-popup" style="margin-top:12px;">Tamam</button>
+    </div>
+  </div>
+  <div id="random-memory-popup" class="random-memory-popup" style="display:none;">
+    <div class="random-memory-popup-box">
+      <button class="popup-close" id="close-random-memory-popup" title="Kapat">&times;</button>
+      <img id="random-memory-img" class="random-memory-img" src="" alt="Rastgele Anı">
+      <div id="random-memory-quote" class="random-memory-quote"></div>
+      <button class="random-next-btn" id="random-next-btn" title="Sonraki Anı">
+        <span class="random-next-icon">&#8594;</span>
+      </button>
+    </div>
+  </div>
+  <div id="sinner-popup" class="sinner-popup" style="display:none;">
+    <div class="sinner-popup-box">
+      <button class="popup-close" id="close-sinner-popup" title="Kapat">&times;</button>
+      <img src="img/sinnerpixel.png" alt="SinneR" class="sinner-popup-img">
+      <div class="sinner-popup-desc">
+        Bu website, Batu & Ezgi'nin anılarını, sevgilerini ve birlikte geçirdikleri güzel zamanları ölümsüzleştirmek için SinneR tarafından hazırlandı.<br><br>
+        Tüm sevenlere, dostlara ve bu siteyi ziyaret eden herkese mutluluklar ve bol bol güzel anılar dilerim!<br><br>
+        <b>Sevgiyle, SinneR</b>
+      </div>
+      <button class="neon-btn sinner-thanks-btn" id="sinner-thanks-btn">Teşekkür Et 💟</button>
+    </div>
+  </div>
+  <div id="sinner-thank-box" class="sinner-thank-box" style="display:none;">
+    <span class="sinner-thank-main">Rica Ederim 🫶</span><br>
+    <span class="sinner-thank-signature">-SinneR</span>
+  </div>
+  <div class="sinner-signature">
+    <img src="img/sinnerpixel.png" alt="SinneR" class="sinner-pixel">
+    <span class="sinner-text">Created By SinneR</span>
+  </div>
+  <a href="https://instagram.com/eymen.gulerr" target="_blank" class="instagram-signature">
+    <span class="instagram-text">Developer Contact</span>
+    <img src="img/Instagram.png" alt="Instagram" class="instagram-pixel">
+  </a>
+  <div id="peace-popup" class="peace-popup" style="display:none;">
+    <div class="peace-popup-box">
+      <button class="popup-close" id="close-peace-popup" title="Kapat">&times;</button>
+      <div class="peace-popup-title">Küçük Bir Tartışma Mı Oldu?</div>
+      <div class="peace-popup-msg">
+        Her ilişkide bazen ufak tefek tartışmalar olur. Önemli olan, birbirinizi sevdiğinizi unutmamak ve barışabilmek!<br><br>
+        Barışmak ister misiniz?
+      </div>
+      <div class="peace-popup-actions">
+        <button class="neon-btn peace-yes-btn" id="peace-yes-btn">Evet 💖</button>
+        <button class="neon-btn peace-no-btn" id="peace-no-btn">Hayır 🙃</button>
+      </div>
+    </div>
+  </div>
+  <div id="peace-gif-popup" class="peace-gif-popup" style="display:none;">
+    <div class="peace-gif-popup-box">
+      <img src="img/sevinc.gif" alt="Sevinç" class="peace-gif-img">
+    </div>
+  </div>
+  <div id="activity-popup" class="activity-popup" style="display:none;">
+    <div class="activity-popup-box">
+      <button class="popup-close" id="close-activity-popup" title="Kapat">&times;</button>
+      <div class="activity-popup-title">Rastgele Aktivite Önerisi</div>
+      <div class="activity-popup-msg" id="activity-popup-msg"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html> 
